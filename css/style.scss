@@ -12,41 +12,66 @@ body {
 
     h1 {
         color: teal;
+
+        @media screen and (max-width: 992px) {
+            font-size: 1.8rem;
+        }
     }
 }
 
-.new-item {
-    position: relative;
+.new-employee-search-field-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
 
-    button {
+    .new-employee-btn button {
         cursor: pointer;
-        position: absolute;
-        top: 9px;
-    }
-}
-
-.search-field {
-    position: relative;
-
-    input {
-        background-color: #f1f3f5;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-        border-radius: 9999px;
-        border-color: #f1f3f5;
-        border-width: 0.125rem;
-        border-style: solid;
-        outline: none;
-        height: 40px;
     }
 
-    .fa-search {
-        position: absolute;
-        opacity: 0.6;
-        right: 1rem;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
+    .search-field {
+        position: relative;
+        text-align: right;
+
+        input {
+            background-color: #f1f3f5;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            border-radius: 9999px;
+            border-color: #f1f3f5;
+            border-width: 0.125rem;
+            border-style: solid;
+            outline: none;
+            height: 34px;
+        }
+
+        .fa-search {
+            position: absolute;
+            opacity: 0.6;
+            right: 1rem;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+    }
+
+    @media screen and (max-width: 450px) {
+        grid-template-columns: 1fr;
+
+        .new-employee-btn button {
+            width: 100%;
+        }
+
+        .search-field {
+            text-align: left;
+            margin-top: 15px;
+
+            input {
+                width: 100%;
+            }
+
+            .fa-search {
+                right: 15px;
+            }
+        }
     }
 }
 
@@ -67,27 +92,129 @@ body {
     .thead {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
+        grid-template-areas: "empName pos office age salary shares";
         background-color: $base-dark-color;
         padding: 10px;
         color: white;
         font-weight: bold;
+
+        .name {
+            grid-area: empName;
+        }
+
+        .position {
+            grid-area: pos;
+        }
+
+        .office {
+            grid-area: office;
+        }
+
+        .age {
+            grid-area: age;
+        }
+
+        .salary {
+            grid-area: salary;
+        }
+
+        .shares {
+            grid-area: shares;
+        }
 
         .fa-sort-down,
         .fa-sort-up {
             cursor: pointer;
             margin-left: 5px;
         }
+
+        @media screen and (max-width: 992px) {
+            grid-template-columns: repeat(2, 1fr);
+
+            .position,
+            .office,
+            .age,
+            .salary {
+                display: none;
+            }
+
+            .shares {
+                text-align: right;
+            }
+        }
     }
 
     .tbody {
-        padding: 10px 0;
         border: 1px solid $base-dark-color;
 
         .tbody-row {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
+            grid-template-areas: "empName pos office age salary shares";
             background-color: $base-light-color;
             padding: 10px 0 10px 15px;
+
+            .name {
+                grid-area: empName;
+            }
+
+            .position {
+                grid-area: pos;
+            }
+
+            .office {
+                grid-area: office;
+            }
+
+            .age {
+                grid-area: age;
+            }
+
+            .salary {
+                grid-area: salary;
+            }
+
+            .shares {
+                grid-area: shares;
+            }
+
+            .position,
+            .office,
+            .age,
+            .salary {
+                span:first-child {
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: 992px) {
+                grid-template-columns: 3fr 1fr;
+                grid-template-areas: "empName shares" "pos shares" "office shares" "age shares" "salary shares";
+
+                .name {
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+
+                .shares {
+                    text-align: right;
+                    margin-right: 30px;
+                }
+
+                .position,
+                .office,
+                .age,
+                .salary {
+                    span:first-child {
+                        display: inline-block;
+                        font-weight: bold;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
+                }
+            }
         }
     }
 }

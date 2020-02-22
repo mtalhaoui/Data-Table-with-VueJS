@@ -14,17 +14,14 @@
                 <h1>Data Table with VueJS</h1>
             </div>
 
-            <div class="row">
-                <div class="col-12 col-md-6">
-                    <div class="new-item">
-                        <button class="btn btn-outline-info btn-sm" v-on:click="showNewEmployee = true">New Employee</button>
-                    </div>
+            <div class="new-employee-search-field-section">
+                <div class="new-employee-btn">
+                    <button class="btn btn-outline-info btn-sm" v-on:click="showNewEmployee = true">New Employee</button>
                 </div>
-                <div class="col-12 col-md-6">
-                    <div class="search-field text-right">
-                        <input type="text" placeholder="Search" v-model="searchKeyword" />
-                        <i class="fa fa-search"></i>
-                    </div>
+
+                <div class="search-field">
+                    <input type="text" placeholder="Search" v-model="searchKeyword" />
+                    <i class="fa fa-search"></i>
                 </div>
             </div>
 
@@ -90,10 +87,22 @@
                     <template v-for="(item, i) in displayedItems">
                         <div class="tbody-row" v-bind:style="[i % 2 == 0 ? { 'background-color': 'white' } : { 'background-color' : 'transparant' }]">
                             <div class="name">{{ item.name }}</div>
-                            <div class="position">{{ item.position }}</div>
-                            <div class="office">{{ item.office }}</div>
-                            <div class="age">{{ item.age }}</div>
-                            <div class="salary">{{ item.salary }}</div>
+                            <div class="position">
+                                <span>Position:</span>
+                                <span>{{ item.position }}</span>
+                            </div>
+                            <div class="office">
+                                <span>Office:</span>
+                                <span>{{ item.office }}</span>
+                            </div>
+                            <div class="age">
+                                <span>Age:</span>
+                                <span>{{ item.age }}</span>
+                            </div>
+                            <div class="salary">
+                                <span>Salary:</span>
+                                <span>$ {{ item.salary }}</span>
+                            </div>
                             <div class="shares"><input type="checkbox" v-model="item.shares" /></div>
                         </div>
                     </template>

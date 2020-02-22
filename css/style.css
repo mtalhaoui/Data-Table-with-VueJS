@@ -12,21 +12,29 @@ body {
   color: teal;
 }
 
-.new-item {
-  position: relative;
+@media screen and (max-width: 992px) {
+  .title h1 {
+    font-size: 1.8rem;
+  }
 }
 
-.new-item button {
+.new-employee-search-field-section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+}
+
+.new-employee-search-field-section .new-employee-btn button {
   cursor: pointer;
-  position: absolute;
-  top: 9px;
 }
 
-.search-field {
+.new-employee-search-field-section .search-field {
   position: relative;
+  text-align: right;
 }
 
-.search-field input {
+.new-employee-search-field-section .search-field input {
   background-color: #f1f3f5;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -35,16 +43,36 @@ body {
   border-width: 0.125rem;
   border-style: solid;
   outline: none;
-  height: 40px;
+  height: 34px;
 }
 
-.search-field .fa-search {
+.new-employee-search-field-section .search-field .fa-search {
   position: absolute;
   opacity: 0.6;
   right: 1rem;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
+}
+
+@media screen and (max-width: 450px) {
+  .new-employee-search-field-section {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .new-employee-search-field-section .new-employee-btn button {
+    width: 100%;
+  }
+  .new-employee-search-field-section .search-field {
+    text-align: left;
+    margin-top: 15px;
+  }
+  .new-employee-search-field-section .search-field input {
+    width: 100%;
+  }
+  .new-employee-search-field-section .search-field .fa-search {
+    right: 15px;
+  }
 }
 
 .new-employee {
@@ -67,10 +95,47 @@ body {
   display: grid;
   -ms-grid-columns: (1fr)[6];
       grid-template-columns: repeat(6, 1fr);
+      grid-template-areas: "empName pos office age salary shares";
   background-color: #447373;
   padding: 10px;
   color: white;
   font-weight: bold;
+}
+
+.data-table .thead .name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: empName;
+}
+
+.data-table .thead .position {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: pos;
+}
+
+.data-table .thead .office {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: office;
+}
+
+.data-table .thead .age {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: age;
+}
+
+.data-table .thead .salary {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: salary;
+}
+
+.data-table .thead .shares {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: shares;
 }
 
 .data-table .thead .fa-sort-down,
@@ -79,8 +144,23 @@ body {
   margin-left: 5px;
 }
 
+@media screen and (max-width: 992px) {
+  .data-table .thead {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  .data-table .thead .position,
+  .data-table .thead .office,
+  .data-table .thead .age,
+  .data-table .thead .salary {
+    display: none;
+  }
+  .data-table .thead .shares {
+    text-align: right;
+  }
+}
+
 .data-table .tbody {
-  padding: 10px 0;
   border: 1px solid #447373;
 }
 
@@ -89,8 +169,81 @@ body {
   display: grid;
   -ms-grid-columns: (1fr)[6];
       grid-template-columns: repeat(6, 1fr);
+      grid-template-areas: "empName pos office age salary shares";
   background-color: #dedede;
   padding: 10px 0 10px 15px;
+}
+
+.data-table .tbody .tbody-row .name {
+  -ms-grid-row: 1;
+  -ms-grid-column: 1;
+  grid-area: empName;
+}
+
+.data-table .tbody .tbody-row .position {
+  -ms-grid-row: 1;
+  -ms-grid-column: 2;
+  grid-area: pos;
+}
+
+.data-table .tbody .tbody-row .office {
+  -ms-grid-row: 1;
+  -ms-grid-column: 3;
+  grid-area: office;
+}
+
+.data-table .tbody .tbody-row .age {
+  -ms-grid-row: 1;
+  -ms-grid-column: 4;
+  grid-area: age;
+}
+
+.data-table .tbody .tbody-row .salary {
+  -ms-grid-row: 1;
+  -ms-grid-column: 5;
+  grid-area: salary;
+}
+
+.data-table .tbody .tbody-row .shares {
+  -ms-grid-row: 1;
+  -ms-grid-column: 6;
+  grid-area: shares;
+}
+
+.data-table .tbody .tbody-row .position span:first-child,
+.data-table .tbody .tbody-row .office span:first-child,
+.data-table .tbody .tbody-row .age span:first-child,
+.data-table .tbody .tbody-row .salary span:first-child {
+  display: none;
+}
+
+@media screen and (max-width: 992px) {
+  .data-table .tbody .tbody-row {
+    -ms-grid-columns: 3fr 1fr;
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas: "empName shares" "pos shares" "office shares" "age shares" "salary shares";
+  }
+  .data-table .tbody .tbody-row .name {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  .data-table .tbody .tbody-row .shares {
+    text-align: right;
+    margin-right: 30px;
+  }
+  .data-table .tbody .tbody-row .position span:first-child,
+  .data-table .tbody .tbody-row .office span:first-child,
+  .data-table .tbody .tbody-row .age span:first-child,
+  .data-table .tbody .tbody-row .salary span:first-child {
+    display: inline-block;
+    font-weight: bold;
+  }
+  .data-table .tbody .tbody-row .position span,
+  .data-table .tbody .tbody-row .office span,
+  .data-table .tbody .tbody-row .age span,
+  .data-table .tbody .tbody-row .salary span {
+    font-size: 14px;
+  }
 }
 
 .pagination {
