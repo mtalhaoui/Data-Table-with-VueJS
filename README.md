@@ -7,3 +7,4 @@ I've kept it simple added just these few things:
 - searching by name
 - combined sorting and searching
 - pagination
+- mobile view
