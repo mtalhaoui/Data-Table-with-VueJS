@@ -1,0 +1,154 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #447373;
+}
+
+.title {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.title h1 {
+  color: teal;
+}
+
+.new-item {
+  position: relative;
+}
+
+.new-item button {
+  cursor: pointer;
+  position: absolute;
+  top: 9px;
+}
+
+.search-field {
+  position: relative;
+}
+
+.search-field input {
+  background-color: #f1f3f5;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 9999px;
+  border-color: #f1f3f5;
+  border-width: 0.125rem;
+  border-style: solid;
+  outline: none;
+  height: 40px;
+}
+
+.search-field .fa-search {
+  position: absolute;
+  opacity: 0.6;
+  right: 1rem;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.new-employee {
+  background-color: #dedede;
+  padding: 15px;
+  border-radius: 6px;
+}
+
+.new-employee .share {
+  padding-top: 10px;
+  padding-left: 35px;
+}
+
+.data-table {
+  margin-top: 15px;
+}
+
+.data-table .thead {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+  background-color: #447373;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+}
+
+.data-table .thead .fa-sort-down,
+.data-table .thead .fa-sort-up {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.data-table .tbody {
+  padding: 10px 0;
+  border: 1px solid #447373;
+}
+
+.data-table .tbody .tbody-row {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+  background-color: #dedede;
+  padding: 10px 0 10px 15px;
+}
+
+.pagination {
+  list-style-type: none !important;
+  overflow: hidden;
+  margin: 0;
+  margin-top: 2rem;
+  display: inline-block;
+}
+
+.pagination .page-item {
+  float: left;
+}
+
+.pagination .page-item button {
+  margin: 0 5px;
+}
+
+.pagination .page-item button:hover {
+  font-weight: bold;
+}
+
+.pagination .active-page {
+  font-weight: bold !important;
+  background-color: #447373;
+  border-color: #447373;
+  color: white;
+}
+
+.pagination .fa-arrow-left,
+.pagination .fa-arrow-right {
+  color: #447373;
+}
+
+.btn:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.btn-outline-info {
+  color: #447373;
+  border-color: #447373;
+}
+
+.btn-outline-info:hover, .btn-outline-info:active {
+  color: #fff;
+  background-color: #447373 !important;
+  border-color: #447373 !important;
+}
+
+.btn-info {
+  border-color: #447373;
+  background-color: #447373;
+}
+
+.btn-info:disabled {
+  background-color: #447373;
+  border-color: #447373;
+}
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Data Table with VueJS</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <div id="data-table" class="container">
+            <div class="title">
+                <h1>Data Table with VueJS</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="new-item">
+                        <button class="btn btn-outline-info btn-sm" v-on:click="showNewEmployee = true">New Employee</button>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="search-field text-right">
+                        <input type="text" placeholder="Search" v-model="searchKeyword" />
+                        <i class="fa fa-search"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="new-employee mt-3" v-show="showNewEmployee">
+                <div class="row">
+                    <div class="form-group col-12 col-md-4">
+                        <input type="text" class="form-control" placeholder="Name" v-model="newEmployee.name" />
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <input type="text" class="form-control" placeholder="Position" v-model="newEmployee.position" />
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <input type="number" class="form-control" placeholder="Age" v-model="newEmployee.age" />
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <input type="text" class="form-control" placeholder="Office" v-model="newEmployee.office" />
+                    </div>
+                    <div class="form-group col-12 col-md-4">
+                        <input type="number" class="form-control" placeholder="Salary" v-model="newEmployee.salary" />
+                    </div>
+                    <div class="form-group col-12 col-md-4 share">
+                        <input class="form-check-input" type="checkbox" id="share" v-model="newEmployee.share" />
+                        <label class="form-check-label" for="share">Share</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-info btn-sm" v-on:click="saveEmployee" :disabled="!newEmployeeCoplete">Save</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-table">
+                <div class="thead">
+                    <div class="name">
+                        <span>Name</span>
+                        <i class="fa fa-sort-up" v-on:click="sortAsc('name')" text="asc"></i>
+                        <i class="fa fa-sort-down" v-on:click="sortDesc('name')"></i>
+                    </div>
+                    <div class="position">
+                        <span>Position</span>
+                        <i class="fa fa-sort-up" v-on:click="sortAsc('position')"></i>
+                        <i class="fa fa-sort-down" v-on:click="sortDesc('position')"></i>
+                    </div>
+                    <div class="office">
+                        <span>Office</span>
+                        <i class="fa fa-sort-up" v-on:click="sortAsc('office')"></i>
+                        <i class="fa fa-sort-down" v-on:click="sortDesc('office')"></i>
+                    </div>
+                    <div class="age">
+                        <span>Age</span>
+                        <i class="fa fa-sort-up" v-on:click="sortAsc('age')"></i>
+                        <i class="fa fa-sort-down" v-on:click="sortDesc('age')"></i>
+                    </div>
+                    <div class="salary">
+                        <span>Salary</span>
+                        <i class="fa fa-sort-up" v-on:click="sortAsc('salary')"></i>
+                        <i class="fa fa-sort-down" v-on:click="sortDesc('salary')"></i>
+                    </div>
+                    <div class="shares">Shares</div>
+                </div>
+                <div class="tbody">
+                    <template v-for="(item, i) in displayedItems">
+                        <div class="tbody-row" v-bind:style="[i % 2 == 0 ? { 'background-color': 'white' } : { 'background-color' : 'transparant' }]">
+                            <div class="name">{{ item.name }}</div>
+                            <div class="position">{{ item.position }}</div>
+                            <div class="office">{{ item.office }}</div>
+                            <div class="age">{{ item.age }}</div>
+                            <div class="salary">{{ item.salary }}</div>
+                            <div class="shares"><input type="checkbox" v-model="item.shares" /></div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="text-center">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <button class="btn btn-sm" type="button" v-if="page != 1" @click="page--">
+                            <i class="fa fa-arrow-left"></i>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button
+                            class="btn btn-outline-info btn-sm"
+                            type="button"
+                            v-for="pageNumber in pages"
+                            @click="page = pageNumber"
+                            v-bind:class="{ 'active-page' : page == pageNumber}"
+                        >
+                            {{pageNumber}}
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button class="btn btn-sm" type="button" @click="page++" v-if="page < pages.length">
+                            <i class="fa fa-arrow-right"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <script src="js/vue.min.js"></script>
+        <script src="js/lodash.min.js"></script>
+        <script src="js/data-table.js"></script>
+    </body>
+</html>
